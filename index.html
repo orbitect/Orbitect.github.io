@@ -26,7 +26,10 @@
   </head>
   <body class="antialiased bg-black overflow-visible">
 
+
+    <!-- Background Image -->
      <div class="fixed inset-0 -z-10 bg-[url('images/Background.png')] bg-cover bg-center blur-sm"></div>
+
 
     <!-- Tab Navigation -->
     <a class="sr-only" href="#content">Skip to content</a>
@@ -59,9 +62,12 @@
 
         <div class="w-[2px] h-12 bg-gray-600 mr-5 ml-auto shrink-0"></div>
 
-        <!-- Shop Button -->
-        <nav class="flex items-center bg-white py-2 px-5 mr-2 rounded-full max-sm:px-3 max-sm:h-8">
-          <a class="flex items-center gap-2" href="">
+        <!-- Shop Button with Dropdown -->
+        <div class="relative">
+          <button 
+            id="shopButton" 
+            class="flex items-center bg-white py-2 px-5 mr-2 rounded-full max-sm:px-3 max-sm:h-8 focus:outline-none"
+          >
             <span class="font-['Inter'] text-black font-semibold text-lg hidden lg:inline">
               Shop Products
             </span>
@@ -69,11 +75,22 @@
               Shop
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" 
-                class="h-5 w-5 fill-current text-black flex-shrink-0 inline-block">
-              <path d="M3 6h5l2 2h11v10H3V6z"/>
+                class="h-5 w-5 fill-current text-black flex-shrink-0 inline-block ml-2 transition-transform duration-200"
+                id="dropdownArrow">
+              <path d="M7 10l5 5 5-5H7z"/>
             </svg>
-          </a>
-        </nav>
+          </button>
+
+          <!-- Dropdown Menu -->
+          <div id="shopDropdown" class="hidden absolute right-0 mt-2 w-fit bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden transition-all duration-200">
+            <a href="/shop/category1" target="_blank" class="font-['Inter'] text-black block px-4 py-2 hover:bg-gray-200 font-medium">
+              Asset Packs
+            </a>
+            <a href="https://www.roblox.com/catalog?Category=1&CreatorName=OrbitectGG&salesTypeFilter=1" target="_blank" class="font-['Inter'] text-black block px-4 py-2 hover:bg-gray-200 font-medium">
+              Roblox Accessories (UGC)
+            </a>
+          </div>
+        </div>
 
       </header>
 
@@ -542,7 +559,30 @@
 
 
     <!-- SCRIPTS & CUSTOM CSS -->
-    
+
+
+    <!-- Shop Button Dropdown Menu -->
+    <script>
+      const shopButton = document.getElementById('shopButton');
+      const shopDropdown = document.getElementById('shopDropdown');
+      const dropdownArrow = document.getElementById('dropdownArrow');
+
+      shopButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        shopDropdown.classList.toggle('hidden');
+        dropdownArrow.classList.toggle('rotate-180');
+      });
+
+      // Close dropdown if clicking outside
+      document.addEventListener('click', (e) => {
+        if (!shopDropdown.contains(e.target) && !shopButton.contains(e.target)) {
+          shopDropdown.classList.add('hidden');
+          dropdownArrow.classList.remove('rotate-180');
+        }
+      });
+    </script>
+
+
     <!-- Footer Dynamic Year Change -->
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
