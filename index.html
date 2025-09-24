@@ -24,7 +24,7 @@
       :target {scroll-margin-top: 7rem; /* offset so headings aren't hidden */}
     </style>
   </head>
-  <body class="antialiased bg-black">
+  <body class="antialiased bg-black overflow-visible">
 
 
     <!-- Tab Navigation -->
@@ -32,7 +32,7 @@
 
 
     <!-- Main Container -->
-    <main id="content" class="max-w-4xl mx-auto mt-6 mb-24 px-6">
+    <main id="content" class="max-w-4xl mx-auto mt-1 mb-14 px-6">
 
 
       <!-- Gradient Background -->
@@ -43,7 +43,6 @@
         </div>
       </div>
       <div class="relative">
-
 
       <!-- Header/Navbar -->
       <header class="bg-zinc-950/80 py-4 px-4 rounded-full flex items-center border-2 border-neutral-900 max-sm:h-16 sticky top-0 z-50 backdrop-blur supports-backdrop:bg-zinc-950/80">
@@ -56,12 +55,12 @@
 
         <div class="w-[2px] mx-4 shrink-0 h-12 bg-gray-600 mr-5"></div>
 
-        <!-- Navigation -->
+        <!-- Navigation with magnetic hover -->
         <nav class="flex gap-8 max-sm:gap-3">
-          <a href="#work-title" class="whitespace-nowrap font-semibold text-white text-xl max-sm:text-sm">
+          <a href="#work-title" class="nav-link whitespace-nowrap font-semibold text-white text-xl max-sm:text-sm">
             Experience
           </a>
-          <a href="#projects-title" class="whitespace-nowrap font-semibold text-white text-xl max-sm:text-sm mr-5">
+          <a href="#projects-title" class="nav-link whitespace-nowrap font-semibold text-white text-xl max-sm:text-sm mr-5">
             Projects
           </a>
         </nav>
@@ -69,20 +68,57 @@
         <div class="w-[2px] h-12 bg-gray-600 mr-5 ml-auto shrink-0"></div>
 
         <!-- Shop Button -->
-        <nav class="flex items-center gap-2 bg-white py-2 px-5 mr-2 rounded-full max-sm:px-3 max-sm:h-8">
+        <nav class="flex items-center bg-white py-2 px-5 mr-2 rounded-full max-sm:px-3 max-sm:h-8">
           <a class="flex items-center gap-2" href="">
-            <span class="font-['Inter'] text-black font-semibold text-lg hidden lg:block">Shop Products</span>
-            <span class="font-['Inter'] text-black font-semibold text-lg block sm:hidden md:block lg:hidden">Shop</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5 fill-current text-black">
+            <span class="font-['Inter'] text-black font-semibold text-lg hidden lg:inline">
+              Shop Products
+            </span>
+            <span class="font-['Inter'] text-black font-semibold text-lg inline sm:hidden md:inline lg:hidden">
+              Shop
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" 
+                class="h-5 w-5 fill-current text-black flex-shrink-0 inline-block">
               <path d="M3 6h5l2 2h11v10H3V6z"/>
             </svg>
           </a>
         </nav>
+
       </header>
+
+      <!-- GSAP for magnetic hover effect -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+      <script>
+        document.querySelectorAll(".nav-link").forEach(link => {
+          link.style.display = "inline-block"; // ensures transform works cleanly
+          link.style.position = "relative";
+
+          link.addEventListener("mousemove", e => {
+            const rect = link.getBoundingClientRect();
+            const offsetX = (e.clientX - rect.left - rect.width / 2) / 5; // X movement
+            const offsetY = (e.clientY - rect.top - rect.height / 2) / 5;  // Y movement
+
+            gsap.to(link, {
+              x: offsetX,
+              y: offsetY,
+              duration: 0.3,
+              ease: "power2.out"
+            });
+          });
+
+          link.addEventListener("mouseleave", () => {
+            gsap.to(link, {
+              x: 0,
+              y: 0,
+              duration: 0.4,
+              ease: "elastic.out(1, 0.4)"
+            });
+          });
+        });
+      </script>
 
 
       <!-- Hero Section -->
-      <div class="relative py-6 mb-7 overflow-hidden">
+      <div class="relative py-6 mb-7 overflow-visible">
         <!-- Sparkles just behind heading + tagline -->
         <div class="absolute top-0 left-0 w-full h-48 -z-10 pointer-events-none" id="sparkles"></div>
 
@@ -99,14 +135,43 @@
           </span>
         </div>
 
+        <!-- Social Links with Magnetic Hover -->
         <div class="w-fit mt-6 py-5 flex items-center content-center gap-8"> 
-          <a class="font-['Inter'] text-white font-bold underline underline-offset-[12px] decoration-[3px] text-xl"
-            href="https://www.roblox.com/users/136940139/profile" target="_blank" rel="noopener noreferrer">Roblox</a>
-          <a class="font-['Inter'] text-white font-bold underline underline-offset-[12px] decoration-[3px] text-xl"
-            href="https://github.com/orbitect" target="_blank" rel="noopener noreferrer">GitHub</a>
-          <a class="font-['Inter'] text-white font-bold underline underline-offset-[12px] decoration-[3px] text-xl"
-            href="https://www.artstation.com/orbitect1" target="_blank" rel="noopener noreferrer">ArtStation</a>
+          <a class="magnetic font-['Inter'] text-white font-bold underline underline-offset-[12px] decoration-[3px] text-xl"
+            href="https://www.roblox.com/users/136940139/profile" target="_blank" rel="noopener noreferrer">
+            Roblox
+          </a>
+          <a class="magnetic font-['Inter'] text-white font-bold underline underline-offset-[12px] decoration-[3px] text-xl"
+            href="https://github.com/orbitect" target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+          <a class="magnetic font-['Inter'] text-white font-bold underline underline-offset-[12px] decoration-[3px] text-xl"
+            href="https://www.artstation.com/orbitect1" target="_blank" rel="noopener noreferrer">
+            ArtStation
+          </a>
         </div>
+
+        <script>
+          // Magnetic hover effect for all .magnetic links
+          document.querySelectorAll(".magnetic").forEach(el => {
+            el.addEventListener("mousemove", e => {
+              const rect = el.getBoundingClientRect();
+              const x = e.clientX - rect.left - rect.width / 2;
+              const y = e.clientY - rect.top - rect.height / 2;
+              gsap.to(el, {
+                x: x * 0.3,
+                y: y * 0.3,
+                duration: 0.3,
+                ease: "power3.out"
+              });
+            });
+
+            el.addEventListener("mouseleave", () => {
+              gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.4)" });
+            });
+          });
+        </script>
+
       </div>
 
 
@@ -175,29 +240,46 @@
         }
       </style>
 
-      <!-- add edge-fade here; tweak --logo-size per-carousel if you want -->
       <div class="carousel edge-fade" id="carousel" role="region" aria-label="Logo Carousel" style="--logo-size: 70px;">
         <div class="carousel-container" id="carouselContainer" role="list">
-          <div class="carousel-item" role="listitem"><img src="../images/NovalyLogo.jpg" alt=""></div>
-          <div class="carousel-item" role="listitem"><img src="../images/ZuruLogo.png" alt=""></div>
-          <div class="carousel-item" role="listitem"><img src="../images/MegafunGamesLogo.webp" alt=""></div>
-          <div class="carousel-item" role="listitem"><img src="../images/SolsticeLogo.webp" alt=""></div>
-          <div class="carousel-item" role="listitem"><img src="../images/WonderworksLogo.png" alt=""></div>
-          <div class="carousel-item" role="listitem"><img src="../images/SeruniteLogo.png" alt=""></div>
+
+          <a href="https://novaly.net/" target="_blank" rel="noopener noreferrer" class="carousel-item" role="listitem">
+            <img src="../images/NovalyLogo.jpg" alt="Novaly Studios Logo">
+          </a>
+
+          <a href="https://zuru.com" target="_blank" rel="noopener noreferrer" class="carousel-item" role="listitem">
+            <img src="../images/ZuruLogo.png" alt="Zuru Logo">
+          </a>
+
+          <a href="https://www.roblox.com/communities/16813122/MegaFun-Games#!/about" target="_blank" rel="noopener noreferrer" class="carousel-item" role="listitem">
+            <img src="../images/MegafunGamesLogo.webp" alt="Megafun Games Logo">
+          </a>
+
+          <a href="https://www.roblox.com/communities/33533450/Solstice-Developers#!/about" target="_blank" rel="noopener noreferrer" class="carousel-item" role="listitem">
+            <img src="../images/SolsticeLogo.webp" alt="Solstice Logo">
+          </a>
+
+          <a href="https://wonderworks.gg/" target="_blank" rel="noopener noreferrer" class="carousel-item" role="listitem">
+            <img src="../images/WonderworksLogo.png" alt="Wonderworks Logo">
+          </a>
+
+          <a href="https://www.serunite.gg/#header" target="_blank" rel="noopener noreferrer" class="carousel-item" role="listitem">
+            <img src="../images/SeruniteLogo.png" alt="Serunite Logo">
+          </a>
+
         </div>
       </div>
 
       <script>
         const carouselContainer = document.getElementById('carouselContainer');
+        let scrollLeft = 0;
+        const scrollSpeed = 4;
+        let lastTimestamp = null;
+        let animationId = null;
 
         // duplicate content for continuous loop
         const carouselItems = carouselContainer.innerHTML;
         carouselContainer.innerHTML += carouselItems;
-
-        // animation loop (unchanged)
-        let scrollLeft = 0;
-        const scrollSpeed = 4;
-        let lastTimestamp = null;
 
         function animateCarousel(ts) {
           if (!lastTimestamp) lastTimestamp = ts;
@@ -209,10 +291,28 @@
           if (scrollLeft >= half) scrollLeft = 0;
 
           carouselContainer.style.transform = `translateX(-${scrollLeft}px)`;
-          requestAnimationFrame(animateCarousel);
+          animationId = requestAnimationFrame(animateCarousel);
         }
 
-        requestAnimationFrame(animateCarousel);
+        function startCarousel() {
+          if (!animationId) {
+            lastTimestamp = null; // reset timing for smoother resume
+            animationId = requestAnimationFrame(animateCarousel);
+          }
+        }
+
+        function stopCarousel() {
+          cancelAnimationFrame(animationId);
+          animationId = null;
+        }
+
+        // Start on load
+        startCarousel();
+
+        // Pause on hover
+        const carousel = document.getElementById('carousel');
+        carousel.addEventListener('mouseenter', stopCarousel);
+        carousel.addEventListener('mouseleave', startCarousel);
       </script>
 
 
@@ -333,40 +433,45 @@
       </section>
 
       
-    <!-- Portfolio Section -->
-    <section aria-labelledby="portfolio-title" class="my-9">
-      <h2 id="portfolio-title" class="font-['Inter'] text-4xl text-white mb-6 font-bold">Portfolio</h2>
+      <!-- Portfolio Section -->
+      <section aria-labelledby="portfolio-title" class="my-9">
+        <h2 id="portfolio-title" class="font-['Inter'] text-4xl text-white mb-6 font-bold">Portfolio</h2>
 
       <!-- Splide Slider -->
       <div id="portfolio-slider" class="splide w-full">
         <div class="splide__track rounded-t-2xl overflow-hidden">
           <ul class="splide__list">
             <li class="splide__slide aspect-video">
-              <img src="../images/GunProject.png" alt="Gun Project Preview 1" class="w-full h-full object-cover">
+              <img src="./images/RainbocornsAssets1.png" alt="Gun Project Preview 2" class="w-full h-full object-cover">
             </li>
             <li class="splide__slide aspect-video">
-              <img src="../images/GunProject.png" alt="Gun Project Preview 2" class="w-full h-full object-cover">
+              <img src="./images/RainbocornsAssets2.png" alt="Gun Project Preview 3" class="w-full h-full object-cover">
             </li>
             <li class="splide__slide aspect-video">
-              <img src="../images/GunProject.png" alt="Gun Project Preview 3" class="w-full h-full object-cover">
+              <img src="./images/RainbocornsInterior2.png" alt="Gun Project Preview 1" class="w-full h-full object-cover">
+            </li>
+            <li class="splide__slide aspect-video">
+              <img src="./images/LibraryRainbocorns.png" alt="Gun Project Preview 3" class="w-full h-full object-cover">
             </li>
           </ul>
         </div>
       </div>
 
-      <!-- Project footer -->
-      <div class="w-full h-20 bg-neutral-900 rounded-b-2xl mt-2 flex items-center px-4">
-        <span class="font-['Inter'] text-white font-semibold">Gun Project</span>
-        <a href="#" class="ml-auto font-['Inter'] text-blue-400 underline">View Project</a>
-      </div>
-    </section>
+        <!-- Project footer -->
+        <div class="w-full h-20 bg-neutral-900 rounded-b-2xl mt-2 flex items-center px-4">
+          <span class="font-['Inter'] text-white font-semibold">Rainbocorns</span>
+          <a href="#" class="ml-auto font-['Inter'] text-blue-400 underline">View Project</a>
+        </div>
+      </section>
 
 
-    <!-- Footer -->
-    <footer class="mt-12 text-sm text-white font-['Inter']">
-      © <span id="year"></span> Orbitect
-    </footer>
+      <!-- Footer -->
+      <footer class="mt-12 text-sm text-white font-['Inter']">
+        © <span id="year"></span> Orbitect
+      </footer>
 
+      
+    </main>
 
     <!-- Footer Dynamic Year Change -->
     <script>
@@ -493,7 +598,6 @@
         });
       });
     </script>
-
 
   </body>
 </html>
