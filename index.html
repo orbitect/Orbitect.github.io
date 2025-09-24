@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&display=swap" rel="stylesheet">
       <!-- Tailwind CSS CDN, Splide CDN & GSAP CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide/dist/js/splide.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide/dist/css/splide.min.css">
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script>
@@ -437,34 +438,62 @@
       <section aria-labelledby="portfolio-title" class="my-9">
         <h2 id="portfolio-title" class="font-['Inter'] text-4xl text-white mb-6 font-bold">Portfolio</h2>
 
-      <!-- Splide Slider -->
-      <div id="portfolio-slider" class="splide w-full">
-        <div class="splide__track rounded-t-2xl overflow-hidden">
-          <ul class="splide__list">
-            <li class="splide__slide aspect-video">
-              <img src="./images/RainbocornsAssets1.png" alt="Gun Project Preview 2" class="w-full h-full object-cover">
-            </li>
-            <li class="splide__slide aspect-video">
-              <img src="./images/RainbocornsAssets2.png" alt="Gun Project Preview 3" class="w-full h-full object-cover">
-            </li>
-            <li class="splide__slide aspect-video">
-              <img src="./images/RainbocornsInterior2.png" alt="Gun Project Preview 1" class="w-full h-full object-cover">
-            </li>
-            <li class="splide__slide aspect-video">
-              <img src="./images/LibraryRainbocorns.png" alt="Gun Project Preview 3" class="w-full h-full object-cover">
-            </li>
-          </ul>
+        <!-- Splide Slider -->
+        <div id="portfolio-slider" class="splide w-full">
+          <div class="splide__track rounded-t-2xl overflow-hidden">
+            <ul class="splide__list">
+              <li class="splide__slide aspect-video">
+                <img src="./images/RainbocornsAssets1.png" alt="Gun Project Preview 2" class="w-full h-full object-cover">
+              </li>
+              <li class="splide__slide aspect-video">
+                <img src="./images/RainbocornsAssets2.png" alt="Gun Project Preview 3" class="w-full h-full object-cover">
+              </li>
+              <li class="splide__slide aspect-video">
+                <img src="./images/RainbocornsInterior2.png" alt="Gun Project Preview 1" class="w-full h-full object-cover">
+              </li>
+              <li class="splide__slide aspect-video">
+                <img src="./images/LibraryRainbocorns.png" alt="Gun Project Preview 3" class="w-full h-full object-cover">
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
 
-        <!-- Project footer -->
-        <div class="w-full h-20 bg-neutral-900 rounded-b-2xl mt-2 flex items-center px-4">
-          <span class="font-['Inter'] text-white font-semibold text-2xl">Rainbocorns</span>
-          <a href="#" class="ml-auto font-['Inter'] text-blue-400 underline">View Project</a>
+          <!-- Project footer -->
+        <div class="w-full h-auto bg-neutral-900 rounded-b-2xl mt-2 flex flex-row justify-between items-center px-3">
+          <div class="h-auto w-full flex flex-col mt-2 pb-3">
+            <div class="h-auto w-full flex flex-row justify-between">
+              <span class="font-['Inter'] text-white font-semibold text-4xl">Rainbocorns</span>
+              <span class="font-['Inter'] text-white font-semibold text-2xl">2024</span>
+            </div>
+            <span class="text-base font-['Inter'] text-white">Zuru & Novaly</span>
+            <span class="font-['Inter'] text-white font-semibold mt-2 mb-1">Software</span>
+            <div class="flex flex-row justify-between">
+              <div class="h-auto w-40 bg-neutral-800 rounded-lg flex flex-row justify-center items-center gap-3 p-2">
+                <img class="h-[2.5rem] rounded-xl" src="./images/BlenderLogo.png" alt="">
+                <img class="h-[2.5rem] rounded-xl" src="./images/SubstanceLogo.png" alt="">
+                <img class="h-[2.5rem] rounded-xl" src="./images/PhotoshopLogo.png" alt="">
+              </div>
+              <div class="flex items-center">
+                <a class="font-['Inter'] text-white font-semibold bg-neutral-800 py-4 px-8 rounded-lg" href="">View Project</a>
+              </div>
+            </div>
+          </div>
+
         </div>
+
       </section>
 
 
+      <!-- Site Tools -->
+      <div>
+        <h3 class="font-['Inter'] text-white font-bold mb-4">Site built with:</h3>
+        <div class="flex flex-row gap-6">
+          <img class="h-[1.2rem] w-auto" src="./images/TailwindLogo.png" alt="">
+          <img class="h-[1.2rem] w-auto" src="./images/GSAPLogo.png" alt="">
+        </div>
+      </div>
+
+      
       <!-- Footer -->
       <footer class="mt-12 text-sm text-white font-['Inter']">
         © <span id="year"></span> Orbitect
@@ -525,9 +554,6 @@
         setInterval(createSparkle, 220);
       });
     </script>
-
-    <!-- Splide JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide/dist/js/splide.min.js"></script>
 
     <!-- Initialize Splide -->
     <script>
