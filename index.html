@@ -27,6 +27,7 @@
   </head>
   <body class="antialiased bg-black overflow-visible">
 
+     <div class="fixed inset-0 -z-10 bg-[url('images/Background.png')] bg-cover bg-center blur-sm"></div>
 
     <!-- Tab Navigation -->
     <a class="sr-only" href="#content">Skip to content</a>
@@ -35,15 +36,6 @@
     <!-- Main Container -->
     <main id="content" class="max-w-4xl mx-auto mt-1 mb-14 px-6">
 
-
-      <!-- Gradient Background -->
-      <div class="fixed inset-0 -z-10 flex items-center justify-center">
-        <div class="w-[1200px] h-[1200px] rounded-full 
-                    bg-[radial-gradient(circle_at_center,#ffffff,_transparent_70%)] 
-                    opacity-10 translate-y-64">
-        </div>
-      </div>
-      <div class="relative">
 
       <!-- Header/Navbar -->
       <header class="bg-zinc-950/80 py-4 px-4 rounded-full flex items-center border-2 border-neutral-900 max-sm:h-16 sticky top-0 z-50 backdrop-blur supports-backdrop:bg-zinc-950/80">
@@ -152,32 +144,11 @@
           </a>
         </div>
 
-        <script>
-          // Magnetic hover effect for all .magnetic links
-          document.querySelectorAll(".magnetic").forEach(el => {
-            el.addEventListener("mousemove", e => {
-              const rect = el.getBoundingClientRect();
-              const x = e.clientX - rect.left - rect.width / 2;
-              const y = e.clientY - rect.top - rect.height / 2;
-              gsap.to(el, {
-                x: x * 0.3,
-                y: y * 0.3,
-                duration: 0.3,
-                ease: "power3.out"
-              });
-            });
-
-            el.addEventListener("mouseleave", () => {
-              gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.4)" });
-            });
-          });
-        </script>
-
       </div>
 
 
       <!-- Divider Above Logo Carousel -->
-      <div class="h-[1px] w-full bg-neutral-600 mt-6"></div>
+      <div class="h-[1px] w-full bg-[linear-gradient(to_right,transparent,theme(colors.neutral.600),transparent)] mb-3"></div>
 
 
       <!-- Logo Carousel -->
@@ -245,7 +216,7 @@
         <div class="carousel-container" id="carouselContainer" role="list">
 
           <a href="https://novaly.net/" target="_blank" rel="noopener noreferrer" class="carousel-item" role="listitem">
-            <img src="../images/NovalyLogo.jpg" alt="Novaly Studios Logo">
+            <img class="rounded-lg" src="../images/NovalyLogo.jpg" alt="Novaly Studios Logo">
           </a>
 
           <a href="https://zuru.com" target="_blank" rel="noopener noreferrer" class="carousel-item" role="listitem">
@@ -253,11 +224,11 @@
           </a>
 
           <a href="https://www.roblox.com/communities/16813122/MegaFun-Games#!/about" target="_blank" rel="noopener noreferrer" class="carousel-item" role="listitem">
-            <img src="../images/MegafunGamesLogo.webp" alt="Megafun Games Logo">
+            <img class="rounded-lg" src="../images/MegafunGamesLogo.webp" alt="Megafun Games Logo">
           </a>
 
           <a href="https://www.roblox.com/communities/33533450/Solstice-Developers#!/about" target="_blank" rel="noopener noreferrer" class="carousel-item" role="listitem">
-            <img src="../images/SolsticeLogo.webp" alt="Solstice Logo">
+            <img class="rounded-lg" src="../images/SolsticeLogo.webp" alt="Solstice Logo">
           </a>
 
           <a href="https://wonderworks.gg/" target="_blank" rel="noopener noreferrer" class="carousel-item" role="listitem">
@@ -265,7 +236,7 @@
           </a>
 
           <a href="https://www.serunite.gg/#header" target="_blank" rel="noopener noreferrer" class="carousel-item" role="listitem">
-            <img src="../images/SeruniteLogo.png" alt="Serunite Logo">
+            <img class="rounded-lg" src="../images/SeruniteLogo.png" alt="Serunite Logo">
           </a>
 
         </div>
@@ -317,6 +288,10 @@
       </script>
 
 
+      <!-- Divider Below Logo Carousel -->
+      <div class="h-[1px] w-full bg-[linear-gradient(to_right,transparent,theme(colors.neutral.600),transparent)] mt-3 mb-3"></div>
+
+
       <!-- Work Experience Section -->
       <section aria-labelledby="work-title" class="my-9">
         <h3 id="work-title" class="font-['Inter'] text-white font-bold text-4xl mb-6">Experience</h3>
@@ -330,14 +305,14 @@
           </div>
           <div class="flex justify-between gap-3 py-4 bg-neutral-900 p-4 rounded-xl mb-3">
             <div>
-              <div class="font-['Inter'] font-semibold text-white">Roblox Accessory Creator</div>
+              <div class="font-['Inter'] font-semibold text-white">Roblox UGC Creator</div>
               <div class="font-['Inter'] text-white">Freelance</div>
             </div>
             <div class="font-['Inter'] text-white">2021 — Present</div>
           </div>
           <div class="flex justify-between gap-3 py-4 bg-neutral-900 p-4 rounded-xl mb-3">
             <div>
-              <div class="font-['Inter'] font-semibold text-white">Founder - Keystone Forge</div>
+              <div class="font-['Inter'] font-semibold text-white">Keystone Forge</div>
               <div class="font-['Inter'] text-white">Founder</div>
             </div>
             <div class="font-['Inter'] text-white">2025 — Present</div>
@@ -406,31 +381,51 @@
 
 
       <!-- Projects Section -->
-      <section aria-labelledby="projects-title" class="my-9">
-        <h2 id="projects-title" class="font-['Inter'] text-4xl text-white mb-3 font-bold">Projects</h2>
+      <section aria-labelledby="portfolio-title" class="my-9">
+        <h2 id="projects-title" class="font-['Inter'] text-4xl text-white mb-6 font-bold">Projects</h2>
 
-        <!-- Splide Slider -->
-        <div id="projects-slider" class="splide w-full">
+                <!-- ✅ Project 1 -->
+        <div class="splide portfolio-slider w-full">
           <div class="splide__track rounded-t-2xl overflow-hidden">
             <ul class="splide__list">
               <li class="splide__slide aspect-video">
-                <img src="../images/RarityMiner.webp" alt="Rarity Miner Preview 1" class="w-full h-full object-cover">
+                <img src="./images/RainbocornsAssets1.png" alt="Gun Project Preview 2" class="w-full h-full object-cover" />
               </li>
               <li class="splide__slide aspect-video">
-                <img src="../images/RarityMiner.webp" alt="Rarity Miner Preview 2" class="w-full h-full object-cover">
+                <img src="./images/RainbocornsAssets2.png" alt="Gun Project Preview 3" class="w-full h-full object-cover" />
               </li>
               <li class="splide__slide aspect-video">
-                <img src="../images/RarityMiner.webp" alt="Rarity Miner Preview 3" class="w-full h-full object-cover">
+                <img src="./images/RainbocornsInterior2.png" alt="Gun Project Preview 1" class="w-full h-full object-cover" />
+              </li>
+              <li class="splide__slide aspect-video">
+                <img src="./images/LibraryRainbocorns.png" alt="Gun Project Preview 3" class="w-full h-full object-cover" />
               </li>
             </ul>
           </div>
         </div>
 
-        <!-- Project footer -->
-        <div class="w-full h-20 bg-neutral-900 rounded-b-2xl mt-2 flex items-center px-4">
-          <span class="font-['Inter'] text-white font-semibold">Rarity Miner</span>
-          <a href="#" class="ml-auto font-['Inter'] text-blue-400 underline">View Project</a>
+        <!-- Project Footer -->
+        <div class="w-full h-auto bg-neutral-900 rounded-b-2xl mt-2 flex flex-row justify-between items-center px-3">
+          <div class="h-auto w-full flex flex-col mt-2 pb-3">
+            <div class="h-auto w-full flex flex-row justify-between">
+              <span class="font-['Inter'] text-white font-semibold text-4xl">Rarity Miner</span>
+              <span class="font-['Inter'] text-white font-semibold text-2xl">2024-2025</span>
+            </div>
+            <span class="text-base font-['Inter'] text-white">Solstice Developers</span>
+            <span class="font-['Inter'] text-white font-semibold mt-2 mb-1">Software</span>
+            <div class="flex flex-row justify-between">
+              <div class="h-auto w-40 bg-neutral-800 rounded-lg flex flex-row justify-center items-center gap-3 p-2">
+                <img class="h-[2.5rem] rounded-xl" src="./images/BlenderLogo.png" alt="">
+                <img class="h-[2.5rem] rounded-xl" src="./images/RobloxStudioLogo.png" alt="">
+                <img class="h-[2.5rem] rounded-xl" src="./images/PhotoshopLogo.png" alt="">
+              </div>
+              <div class="flex items-center justify-center">
+                <a class="font-['Inter'] text-white font-semibold bg-neutral-800 py-4 px-8 rounded-lg magnetic-hover" href="https://www.roblox.com/games/15987558101/Rarity-Miner-NEW-CHEST" >View Project</a>
+              </div>
+            </div>
+          </div>
         </div>
+
       </section>
 
       
@@ -438,27 +433,27 @@
       <section aria-labelledby="portfolio-title" class="my-9">
         <h2 id="portfolio-title" class="font-['Inter'] text-4xl text-white mb-6 font-bold">Portfolio</h2>
 
-        <!-- Splide Slider -->
-        <div id="portfolio-slider" class="splide w-full">
+        <!-- ✅ Portfolio Project 1 -->
+        <div class="splide portfolio-slider w-full">
           <div class="splide__track rounded-t-2xl overflow-hidden">
             <ul class="splide__list">
               <li class="splide__slide aspect-video">
-                <img src="./images/RainbocornsAssets1.png" alt="Gun Project Preview 2" class="w-full h-full object-cover">
+                <img src="./images/RainbocornsAssets1.png" alt="Gun Project Preview 2" class="w-full h-full object-cover" />
               </li>
               <li class="splide__slide aspect-video">
-                <img src="./images/RainbocornsAssets2.png" alt="Gun Project Preview 3" class="w-full h-full object-cover">
+                <img src="./images/RainbocornsAssets2.png" alt="Gun Project Preview 3" class="w-full h-full object-cover" />
               </li>
               <li class="splide__slide aspect-video">
-                <img src="./images/RainbocornsInterior2.png" alt="Gun Project Preview 1" class="w-full h-full object-cover">
+                <img src="./images/RainbocornsInterior2.png" alt="Gun Project Preview 1" class="w-full h-full object-cover" />
               </li>
               <li class="splide__slide aspect-video">
-                <img src="./images/LibraryRainbocorns.png" alt="Gun Project Preview 3" class="w-full h-full object-cover">
+                <img src="./images/LibraryRainbocorns.png" alt="Gun Project Preview 3" class="w-full h-full object-cover" />
               </li>
             </ul>
           </div>
         </div>
 
-          <!-- Project footer -->
+        <!-- Project Footer -->
         <div class="w-full h-auto bg-neutral-900 rounded-b-2xl mt-2 flex flex-row justify-between items-center px-3">
           <div class="h-auto w-full flex flex-col mt-2 pb-3">
             <div class="h-auto w-full flex flex-row justify-between">
@@ -473,17 +468,58 @@
                 <img class="h-[2.5rem] rounded-xl" src="./images/SubstanceLogo.png" alt="">
                 <img class="h-[2.5rem] rounded-xl" src="./images/PhotoshopLogo.png" alt="">
               </div>
-              <div class="flex items-center">
-                <a class="font-['Inter'] text-white font-semibold bg-neutral-800 py-4 px-8 rounded-lg" href="">View Project</a>
+              <div class="flex items-center justify-center">
+                <a class="font-['Inter'] text-white font-semibold bg-neutral-800 py-4 px-8 rounded-lg magnetic-hover" href="">View Project</a>
               </div>
             </div>
           </div>
+        </div>
 
+        <!-- ✅ Portfolio Project 2 -->
+        <div class="splide portfolio-slider w-full mt-12">
+          <div class="splide__track rounded-t-2xl overflow-hidden">
+            <ul class="splide__list">
+              <li class="splide__slide aspect-video">
+                <img src="./images/RainbocornsAssets1.png" alt="Gun Project Preview 2" class="w-full h-full object-cover" />
+              </li>
+              <li class="splide__slide aspect-video">
+                <img src="./images/RainbocornsAssets2.png" alt="Gun Project Preview 3" class="w-full h-full object-cover" />
+              </li>
+              <li class="splide__slide aspect-video">
+                <img src="./images/RainbocornsInterior2.png" alt="Gun Project Preview 1" class="w-full h-full object-cover" />
+              </li>
+              <li class="splide__slide aspect-video">
+                <img src="./images/LibraryRainbocorns.png" alt="Gun Project Preview 3" class="w-full h-full object-cover" />
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Project Footer -->
+        <div class="w-full h-auto bg-neutral-900 rounded-b-2xl mt-2 flex flex-row justify-between items-center px-3">
+          <div class="h-auto w-full flex flex-col mt-2 pb-3">
+            <div class="h-auto w-full flex flex-row justify-between">
+              <span class="font-['Inter'] text-white font-semibold text-4xl">Rainbocorns</span>
+              <span class="font-['Inter'] text-white font-semibold text-2xl">2024</span>
+            </div>
+            <span class="text-base font-['Inter'] text-white">Zuru & Novaly</span>
+            <span class="font-['Inter'] text-white font-semibold mt-2 mb-1">Software</span>
+            <div class="flex flex-row justify-between">
+              <div class="h-auto w-40 bg-neutral-800 rounded-lg flex flex-row justify-center items-center gap-3 p-2">
+                <img class="h-[2.5rem] rounded-xl" src="./images/BlenderLogo.png" alt="">
+                <img class="h-[2.5rem] rounded-xl" src="./images/SubstanceLogo.png" alt="">
+                <img class="h-[2.5rem] rounded-xl" src="./images/PhotoshopLogo.png" alt="">
+              </div>
+              <div class="flex items-center justify-center">
+                <a class="font-['Inter'] text-white font-semibold bg-neutral-800 py-4 px-8 rounded-lg magnetic-hover" href="">View Project</a>
+              </div>
+            </div>
+          </div>
         </div>
 
       </section>
 
-
+      
       <!-- Site Tools -->
       <div>
         <h3 class="font-['Inter'] text-white font-bold mb-4">Site built with:</h3>
@@ -502,10 +538,35 @@
       
     </main>
 
+
+    <!-- SCRIPTS -->
+    
     <!-- Footer Dynamic Year Change -->
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
     </script>
+
+
+    <!-- Magnetic Hover Global -->
+    <script>
+        document.querySelectorAll(".magnetic").forEach(el => {
+          el.addEventListener("mousemove", e => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            gsap.to(el, {
+              x: x * 0.3,
+              y: y * 0.3,
+              duration: 0.3,
+              ease: "power3.out"
+            });
+          });
+
+          el.addEventListener("mouseleave", () => {
+            gsap.to(el, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.4)" });
+          });
+        });
+      </script>
 
 
     <!-- Header Sparkles Effect -->
@@ -557,33 +618,63 @@
 
     <!-- Initialize Splide -->
     <script>
-      // Use 'load' to guarantee the Splide script AND images are ready
+      // Wait until everything (including images) is loaded
       window.addEventListener('load', function () {
-        // Projects slider
-        const projects = document.getElementById('projects-slider');
-        if (projects) {
-          new Splide(projects, {
+        // Target all elements with the class 'projects-slider'
+        document.querySelectorAll('.projects-slider').forEach(slider => {
+          new Splide(slider, {
             type       : 'loop',
             perPage    : 1,
             arrows     : true,
             pagination : true,
             gap        : '0.5rem',
           }).mount();
-        }
+        });
 
-        // Portfolio slider
-        const portfolio = document.getElementById('portfolio-slider');
-        if (portfolio) {
-          new Splide(portfolio, {
+        // Target all elements with the class 'portfolio-slider'
+        document.querySelectorAll('.portfolio-slider').forEach(slider => {
+          new Splide(slider, {
             type       : 'loop',
             perPage    : 1,
             arrows     : true,
             pagination : true,
             gap        : '0.5rem',
           }).mount();
-        }
+        });
       });
     </script>
+
+
+    <script>
+        // Wait until DOM is ready
+        document.addEventListener("DOMContentLoaded", () => {
+          document.querySelectorAll(".magnetic-hover").forEach(button => {
+
+            button.addEventListener("mousemove", (e) => {
+              const rect = button.getBoundingClientRect();
+              const x = e.clientX - rect.left - rect.width / 2;
+              const y = e.clientY - rect.top - rect.height / 2;
+
+              gsap.to(button, {
+                x: x / 3, // adjust divisor for strength
+                y: y / 3,
+                duration: 0.3,
+                ease: "power3.out"
+              });
+            });
+
+            button.addEventListener("mouseleave", () => {
+              gsap.to(button, {
+                x: 0,
+                y: 0,
+                duration: 0.6,
+                ease: "elastic.out(1, 0.4)" // nice bounce back
+              });
+            });
+
+          });
+        });
+      </script>
 
 
     <!-- Hero Typewriter Effect -->
