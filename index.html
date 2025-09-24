@@ -81,16 +81,22 @@
             </svg>
           </button>
 
-          <!-- Dropdown Menu -->
-          <div id="shopDropdown" class="hidden absolute right-0 mt-2 w-fit bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden transition-all duration-200">
-            <a href="/shop/category1" target="_blank" class="font-['Inter'] text-black block px-4 py-2 hover:bg-gray-200 font-medium">
-              Asset Packs
-            </a>
-            <a href="https://www.roblox.com/catalog?Category=1&CreatorName=OrbitectGG&salesTypeFilter=1" target="_blank" class="font-['Inter'] text-black block px-4 py-2 hover:bg-gray-200 font-medium">
-              Roblox Accessories (UGC)
-            </a>
-          </div>
+        <!-- Dropdown Menu -->
+        <div 
+          id="shopDropdown" 
+          class="absolute right-0 mt-2 w-fit bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden 
+                scale-y-0 opacity-0 origin-top"
+        >
+          <a href="/shop/category1" target="_blank" 
+            class="font-['Inter'] text-black block px-4 py-2 opacity-0 blur-[8px] hover:bg-gray-200 font-medium dropdown-link">
+            Asset Packs
+          </a>
+          <a href="https://www.roblox.com/catalog?Category=1&CreatorName=OrbitectGG&salesTypeFilter=1" target="_blank" 
+            class="font-['Inter'] text-black block px-4 py-2 opacity-0 blur-[8px] hover:bg-gray-200 font-medium dropdown-link">
+            Roblox Accessories (UGC)
+          </a>
         </div>
+
 
       </header>
 
@@ -560,27 +566,60 @@
 
     <!-- SCRIPTS & CUSTOM CSS -->
 
-
-    <!-- Shop Button Dropdown Menu -->
+    <!-- Header Dropdown Menu Functionality & Animations  -->
     <script>
       const shopButton = document.getElementById('shopButton');
-      const shopDropdown = document.getElementById('shopDropdown');
-      const dropdownArrow = document.getElementById('dropdownArrow');
+      const dropdown = document.getElementById('shopDropdown');
+      const links = document.querySelectorAll('#shopDropdown .dropdown-link');
+      const arrow = document.getElementById('dropdownArrow');
+      let isOpen = false;
 
-      shopButton.addEventListener('click', (e) => {
-        e.stopPropagation();
-        shopDropdown.classList.toggle('hidden');
-        dropdownArrow.classList.toggle('rotate-180');
+      // 🔥 GSAP Timeline: dropdown expands, then links fade/blur in
+      const tl = gsap.timeline({ paused: true, defaults: { ease: "power2.out" } });
+
+      // 1️⃣ Animate dropdown container
+      tl.to(dropdown, {
+        scaleY: 1,
+        opacity: 1,
+        duration: 0.2
       });
 
-      // Close dropdown if clicking outside
+      // 2️⃣ Animate links: fade in + blur → clear
+      tl.to(links, {
+        opacity: 1,
+        filter: "blur(0px)",
+        stagger: 0.1,
+        duration: 0.2
+      }, "-=0.1");
+
+      // 🟢 Toggle dropdown on button click
+      shopButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isOpen = !isOpen;
+
+        if (isOpen) {
+          tl.play(); // play forward
+          gsap.to(arrow, { rotate: 180, duration: 0.3, ease: "power2.out" });
+        } else {
+          tl.reverse(); // reverse animation
+          gsap.to(arrow, { rotate: 0, duration: 0.3, ease: "power2.out" });
+        }
+      });
+
+      // 🔻 Close dropdown when clicking outside
       document.addEventListener('click', (e) => {
-        if (!shopDropdown.contains(e.target) && !shopButton.contains(e.target)) {
-          shopDropdown.classList.add('hidden');
-          dropdownArrow.classList.remove('rotate-180');
+        if (!dropdown.contains(e.target) && !shopButton.contains(e.target)) {
+          if (isOpen) {
+            tl.reverse();
+            gsap.to(arrow, { rotate: 0, duration: 0.3, ease: "power2.out" });
+            isOpen = false;
+          }
         }
       });
     </script>
+
+
+
 
 
     <!-- Footer Dynamic Year Change -->
