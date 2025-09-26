@@ -28,7 +28,10 @@
 
 
     <!-- Background Image -->
-     <div class="fixed inset-0 -z-10 bg-[url('images/Background.png')] bg-cover bg-center blur-sm"></div>
+    <div 
+      id="bg"
+      class="fixed inset-0 -z-10 bg-[url('images/Background.png')] bg-cover bg-center blur-sm opacity-0 transition-opacity duration-700">
+    </div>
 
 
     <!-- Tab Navigation -->
@@ -618,6 +621,15 @@
 
     <!-- SCRIPTS & CUSTOM CSS -->
 
+    <!-- Background Image Fade-in -->
+    <script>
+      // Wait until everything is loaded, then fade in
+      window.addEventListener("load", () => {
+        document.getElementById("bg").classList.add("opacity-100");
+      });
+    </script>
+
+
     <!-- Header Dropdown Menu Functionality & Animations  -->
     <script>
       const shopButton = document.getElementById('shopButton');
@@ -669,9 +681,6 @@
         }
       });
     </script>
-
-
-
 
 
     <!-- Footer Dynamic Year Change -->
