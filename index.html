@@ -10,11 +10,13 @@
     <link rel="icon" type="image/png" href="/images/Favicon.png" />
     <!-- Inter Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&display=swap" rel="stylesheet">
-      <!-- Tailwind CSS CDN, Splide CDN & GSAP CDN -->
+      <!-- Tailwind CSS CDN, Splide CDN, GSAP CDN & VideoJS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide/dist/js/splide.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide/dist/css/splide.min.css">
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script defer src="https://vjs.zencdn.net/8.23.3/video.min.js"></script>
+    <link href="https://vjs.zencdn.net/8.23.3/video-js.css" rel="stylesheet" />
     <script>
       // Optional: minimal Tailwind config (keeps dark mode linked to system)
       tailwind.config = { darkMode: 'media' };
@@ -552,20 +554,26 @@
         </div>
 
         <!-- ✅ Portfolio Project 2 -->
-        <div class="splide portfolio-slider w-full mt-12">
+        <div class="splide portfolio-slider w-full mt-12" id="portfolioSplide">
           <div class="splide__track rounded-t-2xl overflow-hidden">
             <ul class="splide__list">
-              <li class="splide__slide aspect-video">
-                <img src="./images/RainbocornsAssets1.png" alt="Gun Project Preview 2" class="w-full h-full object-cover" />
-              </li>
-              <li class="splide__slide aspect-video">
-                <img src="./images/RainbocornsAssets2.png" alt="Gun Project Preview 3" class="w-full h-full object-cover" />
-              </li>
-              <li class="splide__slide aspect-video">
-                <img src="./images/RainbocornsInterior2.png" alt="Gun Project Preview 1" class="w-full h-full object-cover" />
-              </li>
-              <li class="splide__slide aspect-video">
-                <img src="./images/LibraryRainbocorns.png" alt="Gun Project Preview 3" class="w-full h-full object-cover" />
+              <li class="splide__slide">
+                <div class="aspect-video">
+                  <video
+                    id="portfolioVideo1"
+                    class="video-js vjs-default-skin w-full h-full"
+                    controls
+                    playsinline
+                    muted
+                    preload="metadata"
+                    data-setup="{}"
+                    poster="./images/PortfolioPoster.jpg">
+                    <source src="./images/PortfolioVid.mp4" type="video/mp4" />
+                    <p class="vjs-no-js">
+                      To view this video please enable JavaScript.
+                    </p>
+                  </video>
+                </div>
               </li>
             </ul>
           </div>
@@ -598,7 +606,7 @@
 
       </section>
 
-      
+    
       <!-- Site Tools -->
       <div>
         <h3 class="font-['Inter'] text-white font-bold mb-4">Site built with:</h3>
@@ -758,6 +766,7 @@
       });
     </script>
 
+
     <!-- Initialize Splide -->
     <script>
       // Wait until everything (including images) is loaded
@@ -817,6 +826,94 @@
           });
         });
       </script>
+
+      <!-- INITIALIZE VIDEO.JS -->
+      <script>
+        window.addEventListener("load", () => {
+          if (!window.videojs) {
+            console.error("❌ Video.js not loaded");
+            return;
+          }
+
+          const player = videojs("portfolioVideo1", {
+            controls: true,
+            autoplay: "muted",
+            loop: true,
+            fluid: true,
+
+            // ✂️ Custom control bar: removes volume, playback speed, etc.
+            controlBar: {
+              children: [
+                "playToggle",          // Play / pause button
+                "progressControl",     // Seek bar
+                "currentTimeDisplay",  // Current time label
+                "timeDivider",         // Divider
+                "durationDisplay",     // Total duration
+                "fullscreenToggle"     // Fullscreen button
+              ]
+            }
+          });
+
+          // 🔁 Try autoplay once loaded
+          player.on("loadeddata", () => player.play().catch(() => {}));
+        });
+      </script>
+    
+
+      <!-- ✅ ALL-IN-ONE CSS -->
+      <style>
+        /* 🖤 Apply #161616 background everywhere */
+        .aspect-video {
+          background-color: #161616 !important;
+        }
+        .video-js,
+        .video-js .vjs-tech,
+        .video-js .vjs-poster,
+        .video-js .vjs-loading-spinner {
+          background-color: #161616 !important;
+        }
+
+        /* 🧼 Remove extra space under control bar */
+        .video-js {
+          padding-bottom: 0 !important;
+        }
+        .video-js .vjs-control-bar {
+          margin-bottom: 0 !important;
+        }
+        .video-js .vjs-text-track-display,
+        .video-js .vjs-caption-settings,
+        .video-js .vjs-spacer {
+          margin: 0 !important;
+          padding: 0 !important;
+          height: 0 !important;
+        }
+
+        /* ✨ Dark control bar */
+        .video-js .vjs-control-bar {
+          background: #161616 !important;
+          transition: opacity 0.3s;
+        }
+
+        /* ✨ Fade-in controls on hover (optional) */
+        .video-js .vjs-control-bar {
+          opacity: 0;
+        }
+        .video-js:hover .vjs-control-bar {
+          opacity: 1;
+        }
+
+        /* ✨ Transparent big play button */
+        .video-js .vjs-big-play-button {
+          background: transparent !important;
+          border: none !important;
+        }
+
+        /* 🧼 Ensure slides don’t add unwanted spacing */
+        .splide__slide {
+          padding: 0 !important;
+          line-height: 0 !important;
+        }
+      </style>
 
 
     <!-- Hero Typewriter Effect -->
