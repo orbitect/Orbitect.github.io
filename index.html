@@ -6,6 +6,9 @@
     <!-- Site Title & Description -->
     <title>Orbitect Portfolio Site</title>
     <meta name="Description" content="Orbitect Portolio Site" />
+    <meta property="og:image" content="../images/https://orbitect.me/images/OrbitectBackdrop.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://yourwebsite.com/thumbnail.jpg">
       <!-- Favicon -->
     <link rel="icon" type="image/png" href="/images/Favicon.png" />
     <!-- Inter Font -->
@@ -341,6 +344,14 @@
           </div>
           <div class="flex justify-between gap-3 py-4 bg-neutral-900 p-4 rounded-xl mb-3">
             <div>
+              <div class="font-['Inter'] font-semibold text-white">Solstice Developers</div>
+              <div class="font-['Inter'] text-white">Lead Developer</div>
+            </div>
+            <div class="font-['Inter'] text-white">2024 — Present</div>
+          </div>
+        </div>
+                  <div class="flex justify-between gap-3 py-4 bg-neutral-900 p-4 rounded-xl mb-3">
+            <div>
               <div class="font-['Inter'] font-semibold text-white">Keystone Forge</div>
               <div class="font-['Inter'] text-white">Founder</div>
             </div>
@@ -550,23 +561,8 @@
         <div class="splide portfolio-slider w-full mt-12" id="portfolioSplide">
           <div class="splide__track rounded-t-2xl overflow-hidden">
             <ul class="splide__list">
-              <li class="splide__slide">
-                <div class="aspect-video">
-                  <video
-                    id="portfolioVideo1"
-                    class="video-js vjs-default-skin w-full h-full"
-                    controls
-                    playsinline
-                    muted
-                    preload="metadata"
-                    data-setup="{}"
-                    poster="./images/PortfolioPoster.jpg">
-                    <source src="./images/PortfolioVid.mp4" type="video/mp4" />
-                    <p class="vjs-no-js">
-                      To view this video please enable JavaScript.
-                    </p>
-                  </video>
-                </div>
+              <li class="splide__slide aspect-video">
+                <img src="./images/DSPic1.png" alt="Gun Project Preview 2" class="w-full h-full object-cover" />
               </li>
             </ul>
           </div>
