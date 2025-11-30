@@ -20,6 +20,11 @@
     <meta name="twitter:image" content="https://orbitect.me/images/OrbitectBackdrop.png">
       <!-- Favicon -->
     <link rel="icon" type="image/png" href="/images/Favicon.png" />
+    <!-- Basic Light Box -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/basiclightbox@5.0.4/dist/basicLightbox.min.css"
+    />
     <!-- Inter Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&display=swap" rel="stylesheet">
     <!-- Emoji Font -->
@@ -469,7 +474,7 @@
           </div>
         </div>
 
-                <!-- ✅ Project 2 -->
+        <!-- ✅ Project 2 -->
         <div class="splide portfolio-slider w-full mt-12">
           <div class="splide__track rounded-t-2xl overflow-hidden">
             <ul class="splide__list">
@@ -521,30 +526,30 @@
       <section aria-labelledby="portfolio-title" class="my-9">
         <h2 id="portfolio-title" class="font-['Inter'] text-4xl text-white mb-6 font-bold">Portfolio</h2>
 
-        <!-- ✅ Portfolio Project 1 -->
+        <!-- Portfolio Slider -->
         <div class="splide portfolio-slider w-full">
           <div class="splide__track rounded-t-2xl overflow-hidden">
             <ul class="splide__list">
-              <li class="splide__slide aspect-video">
-                <img src="./images/RainbocornsMamacorns.jpg" alt="Gun Project Preview 3" class="w-full h-full object-cover" />
+              <li class="splide__slide aspect-video relative group">
+                <img src="./images/RainbocornsMamacorns.jpg" class="w-full h-full object-cover" />
               </li>
-              <li class="splide__slide aspect-video">
-                <img src="./images/RainbocornsMinimania.jpg" alt="Gun Project Preview 2" class="w-full h-full object-cover" />
+              <li class="splide__slide aspect-video relative group">
+                <img src="./images/RainbocornsMinimania.jpg" class="w-full h-full object-cover" />
               </li>
-              <li class="splide__slide aspect-video">
-                <img src="./images/RainbocornsValentines.jpg" alt="Gun Project Preview 3" class="w-full h-full object-cover" />
+              <li class="splide__slide aspect-video relative group">
+                <img src="./images/RainbocornsValentines.jpg" class="w-full h-full object-cover" />
               </li>
-              <li class="splide__slide aspect-video">
-                <img src="./images/RainbocornsEaster.jpg" alt="Gun Project Preview 2" class="w-full h-full object-cover" />
+              <li class="splide__slide aspect-video relative group">
+                <img src="./images/RainbocornsEaster.jpg" class="w-full h-full object-cover" />
               </li>
-              <li class="splide__slide aspect-video">
-                <img src="./images/RainbocornsAssets1.png" alt="Gun Project Preview 2" class="w-full h-full object-cover" />
+              <li class="splide__slide aspect-video relative group">
+                <img src="./images/RainbocornsAssets1.png" class="w-full h-full object-cover" />
               </li>
-              <li class="splide__slide aspect-video">
-                <img src="./images/RainbocornsInterior2.png" alt="Gun Project Preview 1" class="w-full h-full object-cover" />
+              <li class="splide__slide aspect-video relative group">
+                <img src="./images/RainbocornsInterior2.png" class="w-full h-full object-cover" />
               </li>
-              <li class="splide__slide aspect-video">
-                <img src="./images/LibraryRainbocorns.png" alt="Gun Project Preview 3" class="w-full h-full object-cover" />
+              <li class="splide__slide aspect-video relative group">
+                <img src="./images/LibraryRainbocorns.png" class="w-full h-full object-cover" />
               </li>
             </ul>
           </div>
@@ -635,6 +640,35 @@
 
 
     <!-- SCRIPTS & CUSTOM CSS -->
+
+    <!-- Light Box Query -->
+
+    <script>
+      const slides = document.querySelectorAll('.portfolio-slider .splide__slide')
+
+      slides.forEach(slide => {
+        // Create magnifying glass button
+        const btn = document.createElement('button')
+        btn.innerHTML = "🔍"
+        btn.className = `
+          absolute top-2 right-2 bg-black/60 text-white rounded-full
+          w-8 h-8 flex items-center justify-center text-sm cursor-pointer z-[5]
+        `
+
+        slide.appendChild(btn)
+
+        // Lightbox only when clicking the button
+        btn.addEventListener('click', e => {
+          e.stopPropagation()
+
+          const img = slide.querySelector('img')
+          const instance = basicLightbox.create(`
+            <img src="${img.src}" class="max-w-[90vw] max-h-[90vh]" />
+          `)
+          instance.show()
+        })
+      })
+    </script>
 
     <!-- Background Image Fade-in -->
     <script>
@@ -963,4 +997,14 @@
     </script>
 
   </body>
+
+    <script src="node_modules/basiclightbox/dist/basicLightbox.min.js"></script>
+
+    <script>
+      const instance = basicLightbox.create(`
+          <img src="images/Background.png" width="800" height="600">
+      `)
+      instance.show()
+    </script>
+
 </html>
