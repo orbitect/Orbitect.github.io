@@ -37,9 +37,10 @@
     <script defer src="https://vjs.zencdn.net/8.23.3/video.min.js"></script>
     <link href="https://vjs.zencdn.net/8.23.3/video-js.css" rel="stylesheet" />
     <script>98
-      // Optional: minimal Tailwind config (keeps dark mode linked to system)
       tailwind.config = { darkMode: 'media' };
     </script>
+    <!-- Light Box CDN -->
+    <script src="https://unpkg.com/basiclightbox@5.0.4/dist/basicLightbox.min.js"></script>
     <style>
       html {scroll-behavior: smooth;}
       :target {scroll-margin-top: 7rem; /* offset so headings aren't hidden */}
@@ -997,14 +998,5 @@
     </script>
 
   </body>
-
-    <script src="node_modules/basiclightbox/dist/basicLightbox.min.js"></script>
-
-    <script>
-      const instance = basicLightbox.create(`
-          <img src="images/Background.png" width="800" height="600">
-      `)
-      instance.show()
-    </script>
 
 </html>
