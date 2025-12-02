@@ -648,10 +648,40 @@
     <script>
       const slides = document.querySelectorAll('.portfolio-slider .splide__slide')
 
+      // SVG icon (inline, no clipping)
+      const magnifierSVG = `
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="10"
+            cy="10"
+            r="6"
+            stroke="white"
+            stroke-width="2"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <line
+            x1="14.95"
+            y1="14.95"
+            x2="20"
+            y2="20"
+            stroke="white"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
+      `
+
       slides.forEach(slide => {
-        // Create magnifying glass button
         const btn = document.createElement('button')
-        btn.innerHTML = "🔍"
+        btn.innerHTML = magnifierSVG
         btn.className = `
           absolute top-2 right-2 bg-black/60 text-white rounded-full
           w-8 h-8 flex items-center justify-center text-sm cursor-pointer z-[5]
@@ -659,7 +689,6 @@
 
         slide.appendChild(btn)
 
-        // Lightbox only when clicking the button
         btn.addEventListener('click', e => {
           e.stopPropagation()
 
